@@ -7,11 +7,11 @@ import logging
 import pathlib
 import sys
 
-# project import
-#from . import bot, routines
-from . import bot
-
 # 3rd party import
+from obswebsocket import obsws
+
+# project import
+from . import bot
 
 
 logger = logging.getLogger(__name__)
@@ -55,11 +55,18 @@ def main(args=None) -> int:
     config = configparser.ConfigParser()
     config.read(args.config)
 
+    # Start connexion with obs
+    logger.info("Connect to obs")
+    ws: obsws = obsws(config["obs"]["host"], config["obs"]["port"], config["obs"]["secret"])
+    ws.connect()
+
     # Start bot
     logger.info("Init bot")
-    cam_bot = bot.Bot(config["DEFAULT"]["access_token"])
+    cam_bot = bot.Bot(config["twitch"]["access_token"], )
     logger.info("Run bot")
     cam_bot.run()
+
+    ws.disconnect()
 
     return 0
 

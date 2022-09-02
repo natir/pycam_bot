@@ -4,6 +4,7 @@ import logging
 
 # 3rd party import
 from twitchio.ext import commands
+from obswebsocket import obsws, requests
 
 # project import
 
@@ -12,7 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 class Bot(commands.Bot):
-    def __init__(self, access_token: str):
+    def __init__(self, access_token: str, obsws: obsws):
+        self.obsws = obsws
         super().__init__(token=access_token, prefix="!", initial_channels=["cam_doc"])
 
     async def event_ready(self):
