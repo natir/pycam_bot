@@ -12,7 +12,7 @@ license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = [
-    "twitchio[sounds]>=2.4.0",
+    "twitchio>=2.4.0",
 ]
 dynamic = ["version"]
 

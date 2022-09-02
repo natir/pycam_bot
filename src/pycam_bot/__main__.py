@@ -30,8 +30,25 @@ def main(args=None) -> int:
 
     args = parser.parse_args()
 
+    print(args.verbose)
     # Setup logging
-    logging.basicConfig(format="%(levelname)s: %(message)s", level=args.verbose * 10)
+    match args.verbose:
+        case 0:
+            log_level = logging.NOTSET
+        case 1:
+            log_level = logging.CRITICAL
+        case 2:
+            log_level = logging.ERROR
+        case 3:
+            log_level = logging.WARNING
+        case 4:
+            log_level = logging.INFO
+        case _:
+            log_level = logging.DEBUG
+
+
+
+    logging.basicConfig(format="%(levelname)s: %(message)s", level=log_level)
 
     # Read configuration
     logger.info("Parse configuration")

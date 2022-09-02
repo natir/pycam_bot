@@ -3,7 +3,7 @@
 import logging
 
 # 3rd party import
-from twitchio.ext import commands  # , sounds
+from twitchio.ext import commands
 
 # project import
 
@@ -14,9 +14,6 @@ logger = logging.getLogger(__name__)
 class Bot(commands.Bot):
     def __init__(self, access_token: str):
         super().__init__(token=access_token, prefix="!", initial_channels=["cam_doc"])
-
-        # self.music_player = sounds.AudioPlayer(callback=self.music_done)
-        # self.event_player = sounds.AudioPlayer(callback=self.sound_done)
 
     async def event_ready(self):
         logger.info(f"Logged in as | {self.nick}")
@@ -65,9 +62,3 @@ class Bot(commands.Bot):
     @commands.command()
     async def bonk(self, ctx: commands.Context):
         await ctx.send(f"{ctx.author.name} ici on est contre toutes les prisons")
-
-    # @commands.cooldown(rate=1, per=10, bucket=commands.Bucket.channel)
-    # @commands.command()
-    # async def sel(self, ctx: commands.Context, *, message: str):
-    #     sound = sounds.Sound(source='sel.mp3')
-    #     self.event_player.play(sound)
