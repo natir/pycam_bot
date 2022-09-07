@@ -8,7 +8,7 @@ import pathlib
 import sys
 
 # 3rd party import
-from obswebsocket import obsws
+import obsws_python as obs
 
 # project import
 from . import bot
@@ -23,14 +23,13 @@ def main(args=None) -> int:
     if args is None:
         args = sys.argv[1:]
 
-    parser = argparse.ArgumentParser(description="PyCam_Bot")
+    parser = argparse.ArgumentParser(description="PyCamBot")
 
     parser.add_argument("-c", "--config", type=pathlib.Path, help="Configuration file")
     parser.add_argument("-v", "--verbose", action="count", default=0)
 
     args = parser.parse_args()
 
-    print(args.verbose)
     # Setup logging
     match args.verbose:
         case 0:
@@ -46,8 +45,6 @@ def main(args=None) -> int:
         case _:
             log_level = logging.DEBUG
 
-
-
     logging.basicConfig(format="%(levelname)s: %(message)s", level=log_level)
 
     # Read configuration
@@ -57,12 +54,11 @@ def main(args=None) -> int:
 
     # Start connexion with obs
     logger.info("Connect to obs")
-    ws: obsws = obsws(config["obs"]["host"], config["obs"]["port"], config["obs"]["secret"])
-    ws.connect()
+    ws = obs.ReqClient(host=config["obs"]["host"], port=config["obs"]["port"], password=config["obs"]["secret"])
 
     # Start bot
     logger.info("Init bot")
-    cam_bot = bot.Bot(config["twitch"]["access_token"], )
+    cam_bot = bot.Bot(config["twitch"]["access_token"], ws)
     logger.info("Run bot")
     cam_bot.run()
 

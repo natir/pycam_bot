@@ -10,10 +10,10 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 dependencies = [
     "twitchio>=2.4.0",
-    "obs-websocket-py>=0.5.3",
+    "obsws-python>=1.0.4",
 ]
 dynamic = ["version"]
 
