@@ -1,3 +1,5 @@
+etc/pycam_bot.ini
+
 *.py[cod]
 __pycache__/
 dist/
