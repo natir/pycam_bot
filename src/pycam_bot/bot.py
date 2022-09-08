@@ -29,9 +29,7 @@ class Bot(commands.Bot):
     async def help(self, ctx: commands.Context) -> None:
         """Run command help."""
         logger.info(f"{ctx.author.name} launch command help")
-        await ctx.send(
-            f"Liste des commandes disponibles: {','.join(self.commands.keys())}"
-        )
+        await ctx.send(f"Liste des commandes disponibles: {','.join(self.commands.keys())}")
 
     @commands.cooldown(rate=1, per=10, bucket=commands.Bucket.channel)
     @commands.command()
@@ -45,27 +43,21 @@ class Bot(commands.Bot):
     async def instagram(self, ctx: commands.Context) -> None:
         """Run command instagram."""
         logger.info(f"{ctx.author.name} launch command instagram")
-        await ctx.send(
-            "Retrouvé cam_doc sur instagram: https://www.instagram.com/camarade_docteur/"
-        )
+        await ctx.send("Retrouvé cam_doc sur instagram: https://www.instagram.com/camarade_docteur/")
 
     @commands.cooldown(rate=1, per=10, bucket=commands.Bucket.channel)
     @commands.command(aliases=("chroniques", "soundcloud"))
     async def chronique(self, ctx: commands.Context) -> None:
         """Run command chronique."""
         logger.info(f"{ctx.author.name} launch command chronique")
-        await ctx.send(
-            "Retrouvé les chronique de cam_doc sur soundcloud: https://soundcloud.com/pierre-marijon"
-        )
+        await ctx.send("Retrouvé les chronique de cam_doc sur soundcloud: https://soundcloud.com/pierre-marijon")
 
     @commands.cooldown(rate=1, per=10, bucket=commands.Bucket.channel)
     @commands.command()
     async def so(self, ctx: commands.Context, message: str) -> None:
         """Run command so."""
         logger.info(f"{ctx.author.name} launch command so")
-        await ctx.send(
-            f"Allez suivre {message} sur twitch.tv/{message} c'est fantastique, le follow est doux."
-        )
+        await ctx.send(f"Allez suivre {message} sur twitch.tv/{message} c'est fantastique, le follow est doux.")
 
     @commands.cooldown(rate=1, per=10, bucket=commands.Bucket.channel)
     @commands.command()
@@ -78,33 +70,25 @@ class Bot(commands.Bot):
     @commands.command()
     async def sel(self, ctx: commands.Context) -> None:
         logger.info(f"{ctx.author.name} launch command sel")
-        self.obsws.trigger_media_input_action(
-            name="sel", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
-        )
+        self.obsws.trigger_media_input_action(name="sel", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def énorme(self, ctx: commands.Context) -> None:
         """Run command énorme."""
         logger.info(f"{ctx.author.name} launch command énorme")
-        self.obsws.trigger_media_input_action(
-            name="énorme", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
-        )
+        self.obsws.trigger_media_input_action(name="énorme", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def étonnant(self, ctx: commands.Context) -> None:
         """Run command étonnant."""
         logger.info(f"{ctx.author.name} launch command étonnant")
-        self.obsws.trigger_media_input_action(
-            name="étonnant", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
-        )
+        self.obsws.trigger_media_input_action(name="étonnant", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def merde(self, ctx: commands.Context) -> None:
         """Run command merde."""
         logger.info(f"{ctx.author.name} launch command merde")
-        self.obsws.trigger_media_input_action(
-            name="merde", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
-        )
+        self.obsws.trigger_media_input_action(name="merde", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")

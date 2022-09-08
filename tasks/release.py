@@ -13,9 +13,7 @@ def get_current_version() -> str:
     return subprocess.check_output(cmd).decode("utf-8").strip()
 
 
-def bump_version(
-    pre: str = None, major: bool = False, minor: bool = False, patch: bool = True
-) -> str:
+def bump_version(pre: str = None, major: bool = False, minor: bool = False, patch: bool = True) -> str:
     if not any([major, minor, patch]):
         patch = True
     if len([v for v in [major, minor, patch] if v]) != 1:
@@ -27,9 +25,7 @@ def bump_version(
     current_version = parver.Version.parse(get_current_version())
     if not pre:
         version_idx = [major, minor, patch].index(True)
-        version = current_version.bump_release(index=version_idx).replace(
-            pre=None, post=None
-        )
+        version = current_version.bump_release(index=version_idx).replace(pre=None, post=None)
     else:
         version = current_version.bump_pre(pre)
     version = version.replace(local=None, dev=None)
@@ -53,9 +49,7 @@ def release(
         subprocess.check_call(["git", "add", "."])
         if commit:
             subprocess.check_call(["git", "commit", "-m", f"Release {new_version}"])
-            subprocess.check_call(
-                ["git", "tag", "-a", new_version, "-m", f"v{new_version}"]
-            )
+            subprocess.check_call(["git", "tag", "-a", new_version, "-m", f"v{new_version}"])
             subprocess.check_call(["git", "push"])
             subprocess.check_call(["git", "push", "--tags"])
 

@@ -14,9 +14,7 @@ def delete_myself() -> None:
 
 
 def _get_packages_path() -> str:
-    packages_path = (
-        subprocess.check_output(["pdm", "info", "--packages"]).decode("utf-8").strip()
-    )
+    packages_path = subprocess.check_output(["pdm", "info", "--packages"]).decode("utf-8").strip()
     return Path(packages_path).relative_to(PROJECT_ROOT).as_posix()
 
 

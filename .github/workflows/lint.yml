@@ -1,21 +1,17 @@
-name: Lint
+name: Lints
 
 on:
   pull_request:
     paths-ignore:
-      - "docs/**"
-      - "news/**"
       - "*.md"
   push:
     branches:
       - main
     paths-ignore:
-      - "docs/**"
-      - "news/**"
       - "*.md"
 
 jobs:
-  Lint:
+  Lints:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -24,10 +20,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
-      - uses: pdm-project/setup-pdm@main
       - uses: pre-commit/action@v3.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Set up PDM
+        uses: pdm-project/setup-pdm@main
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set Variables
@@ -36,14 +33,12 @@ jobs:
           echo "::set-output name=PIP_CACHE::$(pip cache dir)"
           echo "::set-output name=PDM_CACHE::$(pdm config cache_dir)"
       - name: Cache PIP
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.set_variables.outputs.PIP_CACHE }}
             ${{ steps.set_variables.outputs.PDM_CACHE }}
           key: ${{ runner.os }}-pip-${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: pip install nox
       - name: Run Tests
         run: pdm run lint
