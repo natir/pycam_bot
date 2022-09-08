@@ -34,7 +34,8 @@ test = [
     "pytest>=6.1",
 ]
 dev = [
-    "towncrier>=19.2",
+    "isort>=5",
+    "towncrier>=19",
     "parver>=0.3",
 ]
 

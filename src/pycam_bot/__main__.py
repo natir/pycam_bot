@@ -13,7 +13,6 @@ import obsws_python as obs
 # project import
 from . import bot
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -54,7 +53,11 @@ def main(args=None) -> int:
 
     # Start connexion with obs
     logger.info("Connect to obs")
-    ws = obs.ReqClient(host=config["obs"]["host"], port=config["obs"]["port"], password=config["obs"]["secret"])
+    ws = obs.ReqClient(
+        host=config["obs"]["host"],
+        port=config["obs"]["port"],
+        password=config["obs"]["secret"],
+    )
 
     # Start bot
     logger.info("Init bot")

@@ -2,10 +2,10 @@
 # std import
 import logging
 
-# 3rd party import
-from twitchio.ext import commands
 import obsws_python as obs
 
+# 3rd party import
+from twitchio.ext import commands
 
 # project import
 
@@ -76,22 +76,30 @@ class Bot(commands.Bot):
     @commands.command()
     async def sel(self, ctx: commands.Context):
         logger.info(f"{ctx.author.name} launch command sel")
-        self.obsws.trigger_media_input_action(name="sel", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
+        self.obsws.trigger_media_input_action(
+            name="sel", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        )
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def énorme(self, ctx: commands.Context):
         logger.info(f"{ctx.author.name} launch command énorme")
-        self.obsws.trigger_media_input_action(name="énorme", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
+        self.obsws.trigger_media_input_action(
+            name="énorme", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        )
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def étonnant(self, ctx: commands.Context):
         logger.info(f"{ctx.author.name} launch command étonnant")
-        self.obsws.trigger_media_input_action(name="étonnant", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
+        self.obsws.trigger_media_input_action(
+            name="étonnant", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        )
 
     @commands.cooldown(rate=1, per=30, bucket=commands.Bucket.channel)
     @commands.command()
     async def merde(self, ctx: commands.Context):
         logger.info(f"{ctx.author.name} launch command merde")
-        self.obsws.trigger_media_input_action(name="merde", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART")
+        self.obsws.trigger_media_input_action(
+            name="merde", action="OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        )
