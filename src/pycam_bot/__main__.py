@@ -62,8 +62,6 @@ def main(args=None) -> int:
     logger.info("Run bot")
     cam_bot.run()
 
-    ws.disconnect()
-
     return 0
 
 

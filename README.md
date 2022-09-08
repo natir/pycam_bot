@@ -9,7 +9,7 @@ A python twitch chat bot for my twitch channel cam_doc
 
 ## Requirements
 
-pycam_bot requires Python >=3.7
+pycam_bot requires Python >=3.10
 
 ## Installation
 
