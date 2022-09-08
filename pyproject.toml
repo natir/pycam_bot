@@ -25,6 +25,7 @@ classifiers = [
 Repository = "https://github.com/natir/pycam-bot"
 Homepage = "https://github.com/natir/pycam-bot"
 
+[project.optional-dependencies]
 [tool.pdm]
 version = {use_scm = true}
 package-dir = "src"
@@ -37,6 +38,7 @@ dev = [
     "isort>=5",
     "towncrier>=19",
     "parver>=0.3",
+    "mypy>=0.971",
 ]
 
 [tool.pdm.scripts]
@@ -113,4 +115,26 @@ known_first_party = ["pycam_bot"]
 [tool.pytest.ini_options]
 filterwarnings = [
   "ignore::DeprecationWarning"
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+python_version = "3.10"
+show_error_codes = true
+warn_unused_ignores = true
+exclude = [
+  '\.eggs$',
+  '\.git$',
+  '\.mypy_cache$',
+  '\.tox$',
+  '\.venv$',
+  '_build$',
+  'buck-out$',
+  'build$',
+  'dist$',
+  'tests/fixtures$',
+  '^noxfile\.py$',
+  '^tasks/'
 ]

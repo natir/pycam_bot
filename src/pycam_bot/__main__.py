@@ -16,18 +16,14 @@ from . import bot
 logger = logging.getLogger(__name__)
 
 
-def main(args=None) -> int:
+def main() -> int:
     """Main function of pycam_bot"""
-
-    if args is None:
-        args = sys.argv[1:]
-
     parser = argparse.ArgumentParser(description="PyCamBot")
 
     parser.add_argument("-c", "--config", type=pathlib.Path, help="Configuration file")
     parser.add_argument("-v", "--verbose", action="count", default=0)
 
-    args = parser.parse_args()
+    args: argparse.Namespace = parser.parse_args()
 
     # Setup logging
     match args.verbose:

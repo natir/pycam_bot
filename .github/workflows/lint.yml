@@ -1,4 +1,4 @@
-name: Tests
+name: Lint
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ on:
       - "*.md"
 
 jobs:
-  Testing:
+  Lint:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -23,9 +23,11 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - uses: pdm-project/setup-pdm@main
+      - uses: pre-commit/action@v3.0.0
       - name: Set up PDM
-        uses: pdm-project/setup-pdm@main
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set Variables
@@ -44,4 +46,4 @@ jobs:
       - name: Install dependencies
         run: pip install nox
       - name: Run Tests
-        run: nox -s test-${{ matrix.python-version }}
+        run: pdm run lint

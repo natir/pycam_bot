@@ -8,12 +8,14 @@ import parver
 PROJECT_DIR = Path(__file__).parent.parent
 
 
-def get_current_version():
+def get_current_version() -> str:
     cmd = ["git", "describe", "--tags", "--abbrev=0"]
     return subprocess.check_output(cmd).decode("utf-8").strip()
 
 
-def bump_version(pre=None, major=False, minor=False, patch=True):
+def bump_version(
+    pre: str = None, major: bool = False, minor: bool = False, patch: bool = True
+) -> str:
     if not any([major, minor, patch]):
         patch = True
     if len([v for v in [major, minor, patch] if v]) != 1:
@@ -34,7 +36,14 @@ def bump_version(pre=None, major=False, minor=False, patch=True):
     return str(version)
 
 
-def release(dry_run=False, commit=True, pre=None, major=False, minor=False, patch=True):
+def release(
+    dry_run: bool = False,
+    commit: bool = True,
+    pre: str = None,
+    major: bool = False,
+    minor: bool = False,
+    patch: bool = True,
+) -> None:
     new_version = bump_version(pre, major, minor, patch)
     print(f"Bump version to: {new_version}")
     if dry_run:
@@ -51,7 +60,7 @@ def release(dry_run=False, commit=True, pre=None, major=False, minor=False, patc
             subprocess.check_call(["git", "push", "--tags"])
 
 
-def parse_args(argv=None):
+def parse_args(argv: list[str] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser("release.py")
 
     parser.add_argument("--dry-run", action="store_true", help="Dry run mode")
