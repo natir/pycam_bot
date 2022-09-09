@@ -42,13 +42,12 @@ dev = [
     "parver>=0.3",
     "mypy>=0.971",
     "black>=22",
+    "flake8>=5.0.4",
 ]
 
 [tool.pdm.scripts]
 release = "python -m tasks.release"
 test = "pytest tests/"
-
-lint = "pre-commit run --all-files"
 
 [tool.black]
 line-length = 120

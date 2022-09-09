@@ -38,6 +38,6 @@ jobs:
           key: ${{ runner.os }}-pip-${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: pip install nox
+        run: pdm sync -d -G testing
       - name: Run Tests
-        run: nox -s test-${{ matrix.python-version }}
+        run: pdm run test
